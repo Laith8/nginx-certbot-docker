@@ -1,0 +1,21 @@
+services:
+  nginx:
+    image: nginx:1.29.5
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/:ro # nginx configuration
+      - ./certbot/www/:/var/www/certbot/:ro # temporary files for the HTTP-01 challenge
+      - ./certbot/conf/:/etc/letsencrypt/:ro # actual file with certificates
+    ports:
+      - 80:80
+      - 443:443
+
+  certbot:
+    image: certbot/certbot:v5.3.1
+    container_name: certbot
+    restart: no
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+      - ./domains.list:/etc/certbot/domains.list:ro

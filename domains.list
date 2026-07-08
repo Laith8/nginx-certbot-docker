@@ -1,0 +1,11 @@
+#
+# configuration file for certbot
+# place the domains you need certificated for here
+# 
+# here are a few examples:
+# example.com
+# api.example.com
+# subdomain.domain.de
+# 
+localflix.de
+api.localflix.de

@@ -1,0 +1,3 @@
+# certbot configuration files
+certbot/conf/*
+certbot/www/*
