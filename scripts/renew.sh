@@ -16,6 +16,7 @@ echo "docker compose found"
 
 if [[ -n "$(docker compose ps --status running nginx --quiet)" ]]; then
     echo "nginx is running, continuing"
+    trap 'docker exec nginx nginx -s reload'
 else
     echo "nginx is not running, starting"
     docker compose up -d nginx
